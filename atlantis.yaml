@@ -1,0 +1,21 @@
+version: 3
+automerge: true
+projects:
+- name: netology-atlantis-stage
+  dir: .
+  workspace: stage
+  terraform_version: v0.14.8
+  autoplan:
+    when_modified: ["*.tf", "../modules/**.tf"]
+    enabled: true
+  apply_requirements: [mergeable, approved]
+  workflow: custom
+- name: netology-atlantis-prod
+  dir: .
+  workspace: prod
+  terraform_version: v0.14.8
+  autoplan:
+    when_modified: ["*.tf", "../modules/**.tf"]
+    enabled: true
+  apply_requirements: [mergeable, approved]
+  workflow: custom
